@@ -5,4 +5,5 @@ module.exports = {
   MONGO_PW: process.env.MONGO_PW,
   PORT: process.env.PORT,
   ORIGIN: process.env.ORIGIN,
+  SECRET_SESSION: process.env.SECRET_SESSION,
 };

@@ -23,6 +23,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true } // Add the timestamps option here
 );
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = User;
+module.exports = userSchema;

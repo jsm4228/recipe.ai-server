@@ -16,6 +16,4 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true } // Add the timestamps option here
 );
 
-const Category = mongoose.model("Category", categorySchema);
-
-module.exports = Category;
+module.exports = categorySchema;

@@ -1,4 +1,4 @@
-const { Recipe, User } = require("../models");
+const { Recipe, User, Category } = require("../models");
 
 const getAllRecipes = async (req, res) => {
   try {
@@ -60,7 +60,7 @@ const getRecipesByUser = async (req, res) => {
       where: {
         UserId: req.params.id,
       },
-    });
+    }).populate("User");
     res.status(200).json(recipes);
   } catch (error) {
     res.status(500).json(error);
@@ -68,9 +68,10 @@ const getRecipesByUser = async (req, res) => {
 };
 
 module.exports = {
-  getAllChats,
-  getChatsByUser,
-  createChat,
-  createGPTChat,
-  getGPTchat,
+  getAllRecipes,
+  getRecipeById,
+  createRecipe,
+  updateRecipe,
+  deleteRecipe,
+  getRecipesByUser,
 };
