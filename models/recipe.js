@@ -4,29 +4,24 @@ const recipeSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+
       trim: true,
     },
     description: {
       type: String,
-      required: true,
     },
     cookingInstructions: {
       type: Array,
-      required: true,
     },
     preparationTime: {
       type: String,
-      required: true,
     },
     servings: {
-      type: Number,
-      required: true,
+      type: String,
     },
 
     ingredients: {
       type: Array,
-      required: true,
     },
 
     user: {

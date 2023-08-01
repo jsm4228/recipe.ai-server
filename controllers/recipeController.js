@@ -2,10 +2,11 @@ const { Recipe, User, Image } = require("../models");
 
 const getAllRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.findAll();
+    const recipes = await Recipe.find().populate("image").populate("user");
     res.status(200).json(recipes);
     console.log(recipes);
   } catch (error) {
+    console.log(error.message);
     res.status(500).json(error);
   }
 };
@@ -25,12 +26,12 @@ const createRecipe = async (req, res) => {
       image: req.body.image,
       user: req.body.user,
     });
-    const recipe = await Recipe.create({
-      ...req.body,
-      image: image._id,
-    })
-      .populate("User")
-      .populate("Image");
+    const recipe = await (
+      await Recipe.create({
+        ...req.body,
+        image: image._id,
+      })
+    ).populate("image");
 
     res.status(200).json(recipe);
   } catch (error) {

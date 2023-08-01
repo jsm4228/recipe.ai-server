@@ -1,6 +1,7 @@
 const { User } = require("../models/");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 const initializePassport = require("../passport-config");
 
 initializePassport(passport);
@@ -20,9 +21,12 @@ const authenticateUser = async (req, res) => {
       if (err) {
         return res.status(500).json({ message: "Internal Server Error" });
       }
+      const token = jwt.sign({ userId: user._id }, "your-secret-key", {
+        expiresIn: "1h", // Token expiration time (adjust as needed)
+      });
       // Send a success response with the info.message
       console.log("successfully logged in");
-      return res.status(200).json({ message: info.message, user });
+      return res.status(200).json({ message: info.message, user, token });
       //return res.status(200).json("Successfully logged in");
     });
   })(req, res);
