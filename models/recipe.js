@@ -12,45 +12,31 @@ const recipeSchema = new mongoose.Schema(
       required: true,
     },
     cookingInstructions: {
-      type: String,
+      type: Array,
       required: true,
     },
     preparationTime: {
-      type: Number,
+      type: String,
       required: true,
     },
     servings: {
       type: Number,
       required: true,
     },
-    image: {
-      type: String,
+
+    ingredients: {
+      type: Array,
+      required: true,
     },
-    ingredients: [
-      {
-        name: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        quantity: {
-          type: Number,
-          required: true,
-        },
-        unitOfMeasurement: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    category: {
+    image: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: "Image",
       required: true,
     },
   },

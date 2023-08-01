@@ -1,4 +1,22 @@
-const { Category } = require("../models/");
+const { Image } = require("../models");
+
+const getAllImages = async (req, res) => {
+  try {
+    let images = await Image.find();
+    res.json(images);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getImage = async (req, res) => {
+  try {
+    let image = await Image.findById(req.params.id);
+    res.json(image);
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 // const getAllMessages = async (req, res) => {
 //   try {

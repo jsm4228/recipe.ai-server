@@ -1,4 +1,4 @@
-const { Recipe, User, Category } = require("../models");
+const { Recipe, User, Image } = require("../models");
 
 const getAllRecipes = async (req, res) => {
   try {
@@ -21,9 +21,20 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   try {
-    const recipe = await Recipe.create(req.body);
+    const image = await Image.create({
+      image: req.body.image,
+      user: req.body.user,
+    });
+    const recipe = await Recipe.create({
+      ...req.body,
+      image: image._id,
+    })
+      .populate("User")
+      .populate("Image");
+
     res.status(200).json(recipe);
   } catch (error) {
+    console.log(error.message);
     res.status(500).json(error);
   }
 };

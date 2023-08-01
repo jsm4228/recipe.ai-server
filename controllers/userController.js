@@ -22,8 +22,8 @@ const authenticateUser = async (req, res) => {
       }
       // Send a success response with the info.message
       console.log("successfully logged in");
-      //return res.status(200).json({ message: info.message, user });
-      return res.status(200).json("Successfully logged in");
+      return res.status(200).json({ message: info.message, user });
+      //return res.status(200).json("Successfully logged in");
     });
   })(req, res);
 };

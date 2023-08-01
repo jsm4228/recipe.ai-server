@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 
 const userSchema = require("./user");
 const recipeSchema = require("./recipe");
-const categorySchema = require("./category");
+const imageSchema = require("./image");
 
 const User = mongoose.model("User", userSchema);
 const Recipe = mongoose.model("Recipe", recipeSchema);
-const Category = mongoose.model("Category", categorySchema);
+const Image = mongoose.model("Image", imageSchema);
 
 module.exports = {
   User,
   Recipe,
-  Category,
+  Image,
 };
