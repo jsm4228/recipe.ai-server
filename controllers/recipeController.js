@@ -1,4 +1,26 @@
 const { Recipe, User, Image } = require("../models");
+const { CLOUD_KEY, CLOUD_SECRET } = require("../config");
+
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dfnteocnt",
+  api_key: CLOUD_KEY,
+  api_secret: CLOUD_SECRET,
+});
+// console.log(CLOUD_KEY);
+// console.log(CLOUD_SECRET);
+
+const upload_image = async (image_url) => {
+  console.log(`dalle url to be uploaded`, image_url);
+  const response = await cloudinary.uploader
+    .upload(image_url)
+    .then((result) => {
+      console.log("cloud url to return", result.url);
+      return result.url;
+    });
+  return response;
+};
 
 const getAllRecipes = async (req, res) => {
   try {
@@ -22,8 +44,11 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   try {
+    console.log(`req.body inital`, req.body);
+    const image_url = await upload_image(req.body.image);
+    console.log(`image_url`, image_url);
     const image = await Image.create({
-      image: req.body.image,
+      image: image_url,
       user: req.body.user,
     });
     const recipe = await (
