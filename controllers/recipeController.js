@@ -90,14 +90,12 @@ const deleteRecipe = async (req, res) => {
     res.status(500).json(error);
   }
 };
-
 const getRecipesByUser = async (req, res) => {
+  console.log(`req.params.id`, req.params.id);
   try {
-    const recipes = await Recipe.findAll({
-      where: {
-        UserId: req.params.id,
-      },
-    }).populate("User");
+    const recipes = await Recipe.find({ user: req.params.id })
+      .populate("user")
+      .populate("image");
     res.status(200).json(recipes);
   } catch (error) {
     res.status(500).json(error);

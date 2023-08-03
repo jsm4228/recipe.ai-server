@@ -3,7 +3,7 @@ const Router = express.Router();
 const controller = require("../controllers/recipeController");
 
 Router.get("/", controller.getAllRecipes);
-Router.get("/:id", controller.getRecipeById);
+//Router.get("/:id", controller.getRecipeById);
 Router.post("/", controller.createRecipe);
 Router.put("/:id", controller.updateRecipe);
 Router.delete("/:id", controller.deleteRecipe);
