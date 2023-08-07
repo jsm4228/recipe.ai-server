@@ -25,9 +25,9 @@ app.use(
 app.use(passport.initialize()); // Uncomment this line to initialize Passport.js
 app.use(passport.session()); // Uncomment this line to use Passport.js session
 
-app.use("/", (req, res) => {
-  return res.send("Hello World!");
-});
+// app.use("/", (req, res) => {
+//   return res.send("Hello World!");
+// });
 
 app.use("/api", Router);
 
